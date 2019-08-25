@@ -20,7 +20,7 @@
 script_dir=$(dirname "$0")
 # Change directory to make sure logs directory is created inside $script_dir
 cd $script_dir
-service_name=ballerina-echo.bal
+service_name=ballerina
 default_heap_size="4g"
 heap_size="$default_heap_size"
 wait_listen=false
