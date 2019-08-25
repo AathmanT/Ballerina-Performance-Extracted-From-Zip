@@ -28,7 +28,7 @@ wait_listen=false
 function usage() {
     echo ""
     echo "Usage: "
-    echo "$0 [-m <heap_size>] [-w] [-h] -- [netty_service_flags]"
+    echo "$0 [-m <heap_size>] [-w] [-h] -- [ballerina_echo_flags]"
     echo ""
     echo "-m: The heap memory size of Netty Service. Default: $default_heap_size"
     echo "-w: Wait till the port starts to listen."
@@ -44,6 +44,9 @@ while getopts "m:wh" opts; do
     w)
         wait_listen=true
         ;;
+    p)
+        ballerina_path=${OPTARG}
+        ;;
     h)
         usage
         exit 0
@@ -56,7 +59,7 @@ while getopts "m:wh" opts; do
 done
 shift "$((OPTIND - 1))"
 
-netty_service_flags="$@"
+ballerina_echo_flags="$@"
 
 if [[ -z $heap_size ]]; then
     echo "Please specify the heap size."
@@ -78,12 +81,21 @@ fi
 mkdir -p logs
 
 echo "Starting Netty"
-nohup java -Xms${heap_size} -Xmx${heap_size} -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:$gc_log_file \
-    -jar $service_name-0.3.1-SNAPSHOT.jar $netty_service_flags >netty.out 2>&1 &
+#nohup java -Xms${heap_size} -Xmx${heap_size} -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:$gc_log_file \
+#    -jar $service_name-0.3.1-SNAPSHOT.jar $netty_service_flags >netty.out 2>&1 &
+
+export JAVA_OPTS="-XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:$gc_log_file"
+JAVA_OPTS+=" -Xms${heap_size} -Xmx${heap_size}"
+
+ballerina_command="ballerina run ${ballerina_echo_flags} ballerina-echo.bal"
+echo "Starting Ballerina: $ballerina_command"
+cd $ballerina_path
+nohup $ballerina_command &>netty.out 2>&1 &
+
 
 if [ "$wait_listen" = true ]; then
     # Find the port:
-    port=$(echo "$netty_service_flags" | sed -nE "s/--port[[:blank:]]([[:digit:]]+)/\1/p")
+    port=$(echo "$ballerina_echo_flags" | sed -nE "s/--port[[:blank:]]([[:digit:]]+)/\1/p")
     if [[ -z $port ]]; then
         # Default port
         port=8688

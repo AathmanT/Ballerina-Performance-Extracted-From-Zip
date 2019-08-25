@@ -356,6 +356,58 @@ declare -A test_scenario24=(
     [backend_flags]="--ssl --key-store-file $HOME/ballerinaKeystore.p12 --key-store-password ballerina"
     [skip]=false
 )
+declare -A test_scenario25=(
+    [name]="h1_h1_passthrough_b10_e10"
+    [display_name]="Passthrough HTTPS service (h1 -> h1) b10 e10"
+    [description]="An HTTPS Service, which forwards all requests to an HTTPS back-end service."
+    [bal]="h1_h1_passthrough.balx"
+    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=10 --observe"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="https"
+    [use_backend]=true
+    [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=10"
+    [skip]=false
+)
+declare -A test_scenario26=(
+    [name]="h1_h1_passthrough_b10_e100"
+    [display_name]="Passthrough HTTPS service (h1 -> h1) b10 e100"
+    [description]="An HTTPS Service, which forwards all requests to an HTTPS back-end service."
+    [bal]="h1_h1_passthrough.balx"
+    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=10 --observe"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="https"
+    [use_backend]=true
+    [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=100"
+    [skip]=false
+)
+declare -A test_scenario27=(
+    [name]="h1_h1_passthrough_b100_e10"
+    [display_name]="Passthrough HTTPS service (h1 -> h1) b100 e10"
+    [description]="An HTTPS Service, which forwards all requests to an HTTPS back-end service."
+    [bal]="h1_h1_passthrough.balx"
+    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=100 --observe"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="https"
+    [use_backend]=true
+    [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=10"
+    [skip]=false
+)
+declare -A test_scenario28=(
+    [name]="h1_h1_passthrough_b100_e100"
+    [display_name]="Passthrough HTTPS service (h1 -> h1) b100 e100"
+    [description]="An HTTPS Service, which forwards all requests to an HTTPS back-end service."
+    [bal]="h1_h1_passthrough.balx"
+    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=100 --observe"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="https"
+    [use_backend]=true
+    [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=100"
+    [skip]=false
+)
 # declare -A test_scenario13=(
 #     [name]="passthrough_http_observe_tracing_noop"
 #     [display_name]="Passthrough HTTP Service with Tracing (No-Op)"
