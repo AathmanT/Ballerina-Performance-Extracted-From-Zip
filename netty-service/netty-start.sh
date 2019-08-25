@@ -20,7 +20,7 @@
 script_dir=$(dirname "$0")
 # Change directory to make sure logs directory is created inside $script_dir
 cd $script_dir
-service_name=netty-http-echo-service
+service_name=ballerina-echo.bal
 default_heap_size="4g"
 heap_size="$default_heap_size"
 wait_listen=false
@@ -28,7 +28,7 @@ wait_listen=false
 function usage() {
     echo ""
     echo "Usage: "
-    echo "$0 [-m <heap_size>] [-w] [-h] -- [ballerina_echo_flags]"
+    echo "$0 [-m <heap_size>] [-p] [-w] [-h] -- [ballerina_echo_flags]"
     echo ""
     echo "-m: The heap memory size of Netty Service. Default: $default_heap_size"
     echo "-w: Wait till the port starts to listen."
@@ -36,16 +36,16 @@ function usage() {
     echo ""
 }
 
-while getopts "m:wh" opts; do
+while getopts "m:p:wh" opts; do
     case $opts in
     m)
         heap_size=${OPTARG}
         ;;
-    w)
-        wait_listen=true
-        ;;
     p)
         ballerina_path=${OPTARG}
+        ;;
+    w)
+        wait_listen=true
         ;;
     h)
         usage
