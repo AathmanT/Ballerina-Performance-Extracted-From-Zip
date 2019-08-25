@@ -384,11 +384,12 @@ function before_execute_test_scenario() {
 }
 
 function after_execute_test_scenario() {
+    ssh $ballerina_ssh_host "pkill -f request.py"
     write_server_metrics ballerina $ballerina_ssh_host ballerina.*/bre
     download_file $ballerina_ssh_host ballerina/bal/logs/ballerina.log ballerina.log
     download_file $ballerina_ssh_host ballerina/bal/logs/gc.log ballerina_gc.log
     download_file $ballerina_ssh_host ballerina/bal/logs/heap-dump.hprof ballerina_heap_dump.hprof
-    ssh $ballerina_ssh_host "pkill -f request.py"
+    download_file $ballerina_ssh_host demofile2.txt
 }
 
 test_scenarios
