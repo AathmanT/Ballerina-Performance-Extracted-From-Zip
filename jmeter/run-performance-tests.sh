@@ -408,6 +408,59 @@ declare -A test_scenario28=(
     [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=100"
     [skip]=false
 )
+declare -A test_scenario29=(
+    [name]="h1_transformation_b10_e10"
+    [display_name]="JSON to XML transformation HTTPS service b10 e10"
+    [description]="An HTTPS Service, which transforms JSON requests to XML and then forwards all requests to an HTTPS back-end service."
+    [bal]="h1c_transformation.balx"
+    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=10 --observe"
+    [path]="/transform"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=10"
+    [skip]=false
+)
+declare -A test_scenario30=(
+    [name]="h1_transformation_b10_e100"
+    [display_name]="JSON to XML transformation HTTPS service b10 e100"
+    [description]="An HTTPS Service, which transforms JSON requests to XML and then forwards all requests to an HTTPS back-end service."
+    [bal]="h1c_transformation.balx"
+    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=10 --observe"
+    [path]="/transform"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=100"
+    [skip]=false
+)
+declare -A test_scenario31=(
+    [name]="h1_transformation_b100_e10"
+    [display_name]="JSON to XML transformation HTTPS service b100 e10"
+    [description]="An HTTPS Service, which transforms JSON requests to XML and then forwards all requests to an HTTPS back-end service."
+    [bal]="h1c_transformation.balx"
+    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=100 --observe"
+    [path]="/transform"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=10"
+    [skip]=false
+)
+declare -A test_scenario32=(
+    [name]="h1_transformation_b100_e100"
+    [display_name]="JSON to XML transformation HTTPS service b100 e100"
+    [description]="An HTTPS Service, which transforms JSON requests to XML and then forwards all requests to an HTTPS back-end service."
+    [bal]="h1c_transformation.balx"
+    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=100 --observe"
+    [path]="/transform"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=100"
+    [skip]=false
+)
+
 # declare -A test_scenario13=(
 #     [name]="passthrough_http_observe_tracing_noop"
 #     [display_name]="Passthrough HTTP Service with Tracing (No-Op)"
