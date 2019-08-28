@@ -460,6 +460,59 @@ declare -A test_scenario32=(
     [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=100"
     [skip]=false
 )
+declare -A test_scenario33=(
+    [name]="ballerina_prime_server_521_no_echo_server"
+    [display_name]="Ballerina prime server for 521"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_passthrough_prime.balx"
+    [bal_flags]="-e prime=521 --observe"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=100"
+    [skip]=false
+)
+declare -A test_scenario34=(
+    [name]="ballerina_prime_server_10007_no_echo_server"
+    [display_name]="Ballerina prime server for 10007"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_passthrough_prime.balx"
+    [bal_flags]="-e prime=10007 --observe"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=100"
+    [skip]=false
+)
+declare -A test_scenario35=(
+    [name]="ballerina_prime_server_100003_no_echo_server"
+    [display_name]="Ballerina prime server for 100003"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_passthrough_prime.balx"
+    [bal_flags]="-e prime=100003 --observe"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=100"
+    [skip]=false
+)
+declare -A test_scenario36=(
+    [name]="ballerina_prime_server_10000019_no_echo_server"
+    [display_name]="Ballerina prime server for 10000019"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_passthrough_prime.balx"
+    [bal_flags]="-e prime=10000019 --observe"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=100"
+    [skip]=false
+)
+
 
 # declare -A test_scenario13=(
 #     [name]="passthrough_http_observe_tracing_noop"
