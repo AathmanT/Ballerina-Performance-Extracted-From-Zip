@@ -1,1 +1,1 @@
-ballerina echo server 
+ballerina echo server that does prime calculations
