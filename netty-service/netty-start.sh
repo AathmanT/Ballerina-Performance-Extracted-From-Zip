@@ -20,7 +20,7 @@
 script_dir=$(dirname "$0")
 # Change directory to make sure logs directory is created inside $script_dir
 cd $script_dir
-service_name=ballerina
+service_name="ballerina"
 default_heap_size="4g"
 heap_size="$default_heap_size"
 wait_listen=false
@@ -66,10 +66,24 @@ if [[ -z $heap_size ]]; then
     exit 1
 fi
 
-if pgrep -f "$service_name" >/dev/null; then
+#if pgrep -f "$service_name" >/dev/null; then
+#    echo "Shutting down Netty"
+#    pkill -f $service_name
+#fi
+
+if pgrep -f ballerina.*/bre >/dev/null; then
     echo "Shutting down Netty"
-    pkill -f $service_name
+    pkill -f ballerina.*/bre
+    # Wait for few seconds
+    sleep 5
 fi
+
+# Check whether process exists
+if pgrep -f ballerina.*/bre >/dev/null; then
+    echo "Killing Netty process!!"
+    pkill -9 -f ballerina.*/bre
+fi
+
 
 gc_log_file=./logs/nettygc.log
 
