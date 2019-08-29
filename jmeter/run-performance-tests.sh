@@ -461,7 +461,7 @@ declare -A test_scenario32=(
     [skip]=false
 )
 declare -A test_scenario33=(
-    [name]="ballerina_prime_server_521_no_echo_server"
+    [name]="ballerina_prime_server_521_no_echo_server_t10"
     [display_name]="Ballerina prime server for 521"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
@@ -474,7 +474,7 @@ declare -A test_scenario33=(
     [skip]=false
 )
 declare -A test_scenario34=(
-    [name]="ballerina_prime_server_10007_no_echo_server"
+    [name]="ballerina_prime_server_10007_no_echo_server_t10"
     [display_name]="Ballerina prime server for 10007"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
@@ -487,7 +487,7 @@ declare -A test_scenario34=(
     [skip]=false
 )
 declare -A test_scenario35=(
-    [name]="ballerina_prime_server_100003_no_echo_server"
+    [name]="ballerina_prime_server_100003_no_echo_server_t10"
     [display_name]="Ballerina prime server for 100003"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
@@ -500,7 +500,7 @@ declare -A test_scenario35=(
     [skip]=false
 )
 declare -A test_scenario36=(
-    [name]="ballerina_prime_server_10000019_no_echo_server"
+    [name]="ballerina_prime_server_10000019_no_echo_server_t10"
     [display_name]="Ballerina prime server for 10000019"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
@@ -513,7 +513,7 @@ declare -A test_scenario36=(
     [skip]=false
 )
 declare -A test_scenario37=(
-    [name]="ballerina_prime_server_521_no_echo_server"
+    [name]="ballerina_prime_server_521_no_echo_server_t100"
     [display_name]="Ballerina prime server for 521"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
@@ -526,7 +526,7 @@ declare -A test_scenario37=(
     [skip]=false
 )
 declare -A test_scenario38=(
-    [name]="ballerina_prime_server_10007_no_echo_server"
+    [name]="ballerina_prime_server_10007_no_echo_server_t100"
     [display_name]="Ballerina prime server for 10007"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
@@ -539,7 +539,7 @@ declare -A test_scenario38=(
     [skip]=false
 )
 declare -A test_scenario39=(
-    [name]="ballerina_prime_server_100003_no_echo_server"
+    [name]="ballerina_prime_server_100003_no_echo_server_t100"
     [display_name]="Ballerina prime server for 100003"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
@@ -552,7 +552,7 @@ declare -A test_scenario39=(
     [skip]=false
 )
 declare -A test_scenario40=(
-    [name]="ballerina_prime_server_10000019_no_echo_server"
+    [name]="ballerina_prime_server_10000019_no_echo_server_t100"
     [display_name]="Ballerina prime server for 10000019"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
