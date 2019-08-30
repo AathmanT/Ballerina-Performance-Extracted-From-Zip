@@ -589,17 +589,17 @@ function before_execute_test_scenario() {
     JMETER_JVM_ARGS="-Xbootclasspath/p:/opt/alpnboot/alpnboot.jar"
     echo "Starting Ballerina Service. Ballerina Program: $bal_file, Heap: $heap, Flags: ${bal_flags:-N/A}"
     ssh $ballerina_ssh_host "./ballerina/ballerina-start.sh -p $HOME/ballerina/bal -b $bal_file -m $heap -- $bal_flags"
-    ssh $ballerina_ssh_host "python request.py $bal_file" &
+    #ssh $ballerina_ssh_host "python request.py $bal_file" &
 
 }
 
 function after_execute_test_scenario() {
-    ssh $ballerina_ssh_host "pkill -f request.py"
+    #ssh $ballerina_ssh_host "pkill -f request.py"
     write_server_metrics ballerina $ballerina_ssh_host ballerina.*/bre
     download_file $ballerina_ssh_host ballerina/bal/logs/ballerina.log ballerina.log
     download_file $ballerina_ssh_host ballerina/bal/logs/gc.log ballerina_gc.log
     download_file $ballerina_ssh_host ballerina/bal/logs/heap-dump.hprof ballerina_heap_dump.hprof
-    download_file $ballerina_ssh_host demofile2.txt
+    #download_file $ballerina_ssh_host demofile2.txt
 }
 
 test_scenarios
