@@ -465,7 +465,8 @@ declare -A test_scenario33=(
     [display_name]="Ballerina prime server for 521_t10"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
-    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=10 -e prime=521 --observe"
+    [bal_flags]="-e prime=521 --observe"
+    [max_pool]="10"
     [path]="/passthrough"
     [jmx]="http-post-request.jmx"
     [protocol]="http"
@@ -478,7 +479,8 @@ declare -A test_scenario34=(
     [display_name]="Ballerina prime server for 10007_t10"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
-    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=10 -e prime=10007 --observe"
+    [bal_flags]="-e prime=10007 --observe"
+    [max_pool]="10"
     [path]="/passthrough"
     [jmx]="http-post-request.jmx"
     [protocol]="http"
@@ -491,7 +493,8 @@ declare -A test_scenario35=(
     [display_name]="Ballerina prime server for 100003_t10"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
-    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=10 -e prime=100003 --observe"
+    [bal_flags]="-e prime=100003 --observe"
+    [max_pool]="10"
     [path]="/passthrough"
     [jmx]="http-post-request.jmx"
     [protocol]="http"
@@ -504,7 +507,8 @@ declare -A test_scenario36=(
     [display_name]="Ballerina prime server for 10000019_t10"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
-    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=10 -e prime=10000019 --observe"
+    [bal_flags]="-e prime=10000019 --observe"
+    [max_pool]="10"
     [path]="/passthrough"
     [jmx]="http-post-request.jmx"
     [protocol]="http"
@@ -517,7 +521,8 @@ declare -A test_scenario37=(
     [display_name]="Ballerina prime server for 521_t100"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
-    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=100 -e prime=521 --observe"
+    [bal_flags]="-e prime=521 --observe"
+    [max_pool]="100"
     [path]="/passthrough"
     [jmx]="http-post-request.jmx"
     [protocol]="http"
@@ -530,7 +535,8 @@ declare -A test_scenario38=(
     [display_name]="Ballerina prime server for 10007_t100"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
-    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=100 -e prime=10007 --observe"
+    [bal_flags]="-e prime=10007 --observe"
+    [max_pool]="100"
     [path]="/passthrough"
     [jmx]="http-post-request.jmx"
     [protocol]="http"
@@ -543,7 +549,8 @@ declare -A test_scenario39=(
     [display_name]="Ballerina prime server for 100003_t100"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
-    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=100 -e prime=100003 --observe"
+    [bal_flags]="-e prime=100003 --observe"
+    [max_pool]="100"
     [path]="/passthrough"
     [jmx]="http-post-request.jmx"
     [protocol]="http"
@@ -556,7 +563,8 @@ declare -A test_scenario40=(
     [display_name]="Ballerina prime server for 10000019_t100"
     [description]="An HTTPS Service, which checks prime and also echoes the request back"
     [bal]="h1c_h1c_passthrough_prime_alpha.bal"
-    [bal_flags]="-e b7a.runtime.scheduler.threadpoolsize=100 -e prime=10000019 --observe"
+    [bal_flags]="-e prime=10000019 --observe"
+    [max_pool]="100"
     [path]="/passthrough"
     [jmx]="http-post-request.jmx"
     [protocol]="http"
@@ -582,13 +590,14 @@ declare -A test_scenario40=(
 function before_execute_test_scenario() {
     local bal_file=${scenario[bal]}
     local bal_flags=${scenario[bal_flags]}
+    local max_pool=${scenario[max_pool]}
     local service_path=${scenario[path]}
     local protocol=${scenario[protocol]}
     jmeter_params+=("host=$ballerina_host" "port=9090" "path=$service_path")
     jmeter_params+=("payload=$HOME/${msize}B.json" "response_size=${msize}B" "protocol=$protocol")
     JMETER_JVM_ARGS="-Xbootclasspath/p:/opt/alpnboot/alpnboot.jar"
     echo "Starting Ballerina Service. Ballerina Program: $bal_file, Heap: $heap, Flags: ${bal_flags:-N/A}"
-    ssh $ballerina_ssh_host "./ballerina/ballerina-start.sh -p $HOME/ballerina/bal -b $bal_file -m $heap -- $bal_flags"
+    ssh $ballerina_ssh_host "./ballerina/ballerina-start.sh -p $HOME/ballerina/bal -b $bal_file -t $max_pool -m $heap -- $bal_flags"
     #ssh $ballerina_ssh_host "python request.py $bal_file" &
 
 }
