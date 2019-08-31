@@ -572,7 +572,246 @@ declare -A test_scenario40=(
     [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=100"
     [skip]=false
 )
-
+declare -A test_scenario41=(
+    [name]="ballerina_prime_521_passthrough_t10_ballerina_prime_echo_t10"
+    [display_name]="Ballerina prime and echo server for 521_b10_e10"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=521 --observe"
+    [max_pool]="10"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=521"
+    [echo_max_pool]="10"
+    [skip]=false
+)
+declare -A test_scenario42=(
+    [name]="ballerina_prime_521_passthrough_t100_ballerina_prime_echo_t10"
+    [display_name]="Ballerina prime and echo server for 521_b100_e10"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=521 --observe"
+    [max_pool]="100"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=521"
+    [echo_max_pool]="10"
+    [skip]=false
+)
+declare -A test_scenario43=(
+    [name]="ballerina_prime_521_passthrough_t10_ballerina_prime_echo_t100"
+    [display_name]="Ballerina prime and echo server for 521_b10_e100"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=521 --observe"
+    [max_pool]="10"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=521"
+    [echo_max_pool]="100"
+    [skip]=false
+)
+declare -A test_scenario44=(
+    [name]="ballerina_prime_521_passthrough_t100_ballerina_prime_echo_t100"
+    [display_name]="Ballerina prime and echo server for 521_b100_e100"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=521 --observe"
+    [max_pool]="100"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=521"
+    [echo_max_pool]="100"
+    [skip]=false
+)
+declare -A test_scenario45=(
+    [name]="ballerina_prime_10007_passthrough_t10_ballerina_prime_echo_t10"
+    [display_name]="Ballerina prime and echo server for 10007_b10_e10"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=10007 --observe"
+    [max_pool]="10"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=10007"
+    [echo_max_pool]="10"
+    [skip]=false
+)
+declare -A test_scenario46=(
+    [name]="ballerina_prime_10007_passthrough_t100_ballerina_prime_echo_t10"
+    [display_name]="Ballerina prime and echo server for 10007_b100_e10"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=10007 --observe"
+    [max_pool]="100"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=10007"
+    [echo_max_pool]="10"
+    [skip]=false
+)
+declare -A test_scenario47=(
+    [name]="ballerina_prime_10007_passthrough_t10_ballerina_prime_echo_t100"
+    [display_name]="Ballerina prime and echo server for 10007_b10_e100"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=10007 --observe"
+    [max_pool]="10"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=10007"
+    [echo_max_pool]="100"
+    [skip]=false
+)
+declare -A test_scenario48=(
+    [name]="ballerina_prime_10007_passthrough_t100_ballerina_prime_echo_t100"
+    [display_name]="Ballerina prime and echo server for 10007_b100_e100"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=10007 --observe"
+    [max_pool]="100"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=10007"
+    [echo_max_pool]="100"
+    [skip]=false
+)
+declare -A test_scenario49=(
+    [name]="ballerina_prime_100003_passthrough_t10_ballerina_prime_echo_t10"
+    [display_name]="Ballerina prime and echo server for 100003_b10_e10"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=100003 --observe"
+    [max_pool]="10"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=100003"
+    [echo_max_pool]="10"
+    [skip]=false
+)
+declare -A test_scenario50=(
+    [name]="ballerina_prime_100003_passthrough_t100_ballerina_prime_echo_t10"
+    [display_name]="Ballerina prime and echo server for 100003_b100_e10"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=100003 --observe"
+    [max_pool]="100"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=100003"
+    [echo_max_pool]="10"
+    [skip]=false
+)
+declare -A test_scenario51=(
+    [name]="ballerina_prime_100003_passthrough_t10_ballerina_prime_echo_t100"
+    [display_name]="Ballerina prime and echo server for 100003_b10_e100"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=100003 --observe"
+    [max_pool]="10"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=100003"
+    [echo_max_pool]="100"
+    [skip]=false
+)
+declare -A test_scenario52=(
+    [name]="ballerina_prime_100003_passthrough_t100_ballerina_prime_echo_t100"
+    [display_name]="Ballerina prime and echo server for 100003_b100_e100"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=100003 --observe"
+    [max_pool]="100"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=100003"
+    [echo_max_pool]="100"
+    [skip]=false
+)
+declare -A test_scenario53=(
+    [name]="ballerina_prime_10000019_passthrough_t10_ballerina_prime_echo_t10"
+    [display_name]="Ballerina prime and echo server for 10000019_b10_e10"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=10000019 --observe"
+    [max_pool]="10"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=10000019"
+    [echo_max_pool]="10"
+    [skip]=false
+)
+declare -A test_scenario54=(
+    [name]="ballerina_prime_10000019_passthrough_t100_ballerina_prime_echo_t10"
+    [display_name]="Ballerina prime and echo server for 10000019_b100_e10"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=10000019 --observe"
+    [max_pool]="100"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=10000019"
+    [echo_max_pool]="10"
+    [skip]=false
+)
+declare -A test_scenario55=(
+    [name]="ballerina_prime_10000019_passthrough_t10_ballerina_prime_echo_t100"
+    [display_name]="Ballerina prime and echo server for 10000019_b10_e100"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=10000019 --observe"
+    [max_pool]="10"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=10000019"
+    [echo_max_pool]="100"
+    [skip]=false
+)
+declare -A test_scenario56=(
+    [name]="ballerina_prime_10000019_passthrough_t100_ballerina_prime_echo_t100"
+    [display_name]="Ballerina prime and echo server for 10000019_b100_e100"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_prime_passthrough_alpha.bal"
+    [bal_flags]="-e prime=10000019 --observe"
+    [max_pool]="100"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="-e prime=10000019"
+    [echo_max_pool]="100"
+    [skip]=false
+)
 
 # declare -A test_scenario13=(
 #     [name]="passthrough_http_observe_tracing_noop"

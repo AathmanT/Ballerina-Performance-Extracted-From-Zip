@@ -548,8 +548,9 @@ function test_scenarios() {
 
                         if [[ $sleep_time -ge 0 ]]; then
                             local backend_flags="${scenario[backend_flags]}"
+			    local max_pool_size="${scenario[echo_max_pool]}"
                             echo "Starting Backend Service. Delay: $sleep_time, Additional Flags: ${backend_flags:-N/A}"
-                            ssh $backend_ssh_host "./netty-service/netty-start.sh -m $netty_service_heap_size -p $HOME/netty-service -w \
+                            ssh $backend_ssh_host "./netty-service/netty-start.sh -m $netty_service_heap_size -p $HOME/netty-service -t ${max_pool_size} -w \
                                 -- ${backend_flags}"
                             collect_server_metrics netty $backend_ssh_host netty
                         fi

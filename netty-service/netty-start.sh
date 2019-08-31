@@ -28,7 +28,7 @@ wait_listen=false
 function usage() {
     echo ""
     echo "Usage: "
-    echo "$0 [-m <heap_size>] [-p] [-w] [-h] -- [ballerina_echo_flags]"
+    echo "$0 [-m <heap_size>] [-p] [-t] [-w] [-h] -- [ballerina_echo_flags]"
     echo ""
     echo "-m: The heap memory size of Netty Service. Default: $default_heap_size"
     echo "-w: Wait till the port starts to listen."
@@ -36,13 +36,16 @@ function usage() {
     echo ""
 }
 
-while getopts "m:p:wh" opts; do
+while getopts "m:p:t:wh" opts; do
     case $opts in
     m)
         heap_size=${OPTARG}
         ;;
     p)
         ballerina_path=${OPTARG}
+        ;;
+    t)
+        max_pool_size=${OPTARG}
         ;;
     w)
         wait_listen=true
@@ -101,7 +104,9 @@ echo "Starting Netty"
 export JAVA_OPTS="-XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:$gc_log_file"
 JAVA_OPTS+=" -Xms${heap_size} -Xmx${heap_size}"
 
-ballerina_command="ballerina run ${ballerina_echo_flags} ballerina-echo.bal"
+export BALLERINA_MAX_POOL_SIZE="${max_pool_size}"
+
+ballerina_command="ballerina run ${ballerina_echo_flags} ballerina-prime-echo-alpha.bal"
 echo "Starting Ballerina: $ballerina_command"
 cd $ballerina_path
 nohup $ballerina_command &>netty.out 2>&1 &
