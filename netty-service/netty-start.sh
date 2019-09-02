@@ -106,7 +106,7 @@ JAVA_OPTS+=" -Xms${heap_size} -Xmx${heap_size}"
 
 export BALLERINA_MAX_POOL_SIZE="${max_pool_size}"
 
-ballerina_command="ballerina run ${ballerina_echo_flags} ballerina-prime-echo-alpha.bal"
+ballerina_command="ballerina run ${ballerina_echo_flags} ballerina-echo-alpha.bal"
 echo "Starting Ballerina: $ballerina_command"
 cd $ballerina_path
 nohup $ballerina_command &>netty.out 2>&1 &

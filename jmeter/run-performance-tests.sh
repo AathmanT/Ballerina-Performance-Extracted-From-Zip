@@ -812,7 +812,66 @@ declare -A test_scenario56=(
     [echo_max_pool]="100"
     [skip]=false
 )
-
+declare -A test_scenario57=(
+    [name]="h1_h1_passthrough_b10_e10_alpha"
+    [display_name]="Passthrough HTTPS service (h1 -> h1) b10 e10"
+    [description]="An HTTPS Service, which forwards all requests to an HTTPS back-end service."
+    [bal]="h1c_h1c_passthrough_alpha.bal"
+    [bal_flags]="--observe"
+    [max_pool]="10"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="--observe"
+    [echo_max_pool]="10"
+    [skip]=false
+)
+declare -A test_scenario58=(
+    [name]="h1_h1_passthrough_b10_e100_alpha"
+    [display_name]="Passthrough HTTPS service (h1 -> h1) b10 e100"
+    [description]="An HTTPS Service, which forwards all requests to an HTTPS back-end service."
+    [bal]="h1c_h1c_passthrough_alpha.bal"
+    [bal_flags]="--observe"
+    [max_pool]="10"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="--observe"
+    [echo_max_pool]="100"
+    [skip]=false
+)
+declare -A test_scenario59=(
+    [name]="h1_h1_passthrough_b100_e10_alpha"
+    [display_name]="Passthrough HTTPS service (h1 -> h1) b100 e10"
+    [description]="An HTTPS Service, which forwards all requests to an HTTPS back-end service."
+    [bal]="h1c_h1c_passthrough_alpha.bal"
+    [bal_flags]="--observe"
+    [max_pool]="100"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="--observe"
+    [echo_max_pool]="10"
+    [skip]=false
+)
+declare -A test_scenario60=(
+    [name]="h1_h1_passthrough_b100_e100_alpha"
+    [display_name]="Passthrough HTTPS service (h1 -> h1) b100 e100"
+    [description]="An HTTPS Service, which forwards all requests to an HTTPS back-end service."
+    [bal]="h1c_h1c_passthrough_alpha.bal"
+    [bal_flags]="--observe"
+    [max_pool]="100"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="--observe"
+    [echo_max_pool]="100"
+    [skip]=false
+)
 # declare -A test_scenario13=(
 #     [name]="passthrough_http_observe_tracing_noop"
 #     [display_name]="Passthrough HTTP Service with Tracing (No-Op)"
