@@ -564,7 +564,71 @@ declare -A test_scenario40=(
     [backend_flags]="-e b7a.runtime.scheduler.threadpoolsize=100"
     [skip]=false
 )
-
+declare -A test_scenario41=(
+    [name]="h1c_h1c_passthrough_default_alpha"
+    [display_name]="Passthrough HTTPS service (h1 -> h1) alpha"
+    [description]="An HTTPS Service, which forwards all requests to an HTTPS back-end service."
+    [bal]="h1c_h1c_passthrough_alpha.bal"
+    [bal_flags]="--observe"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]="--observe"
+    [skip]=false
+)
+declare -A test_scenario42=(
+    [name]="ballerina_prime_server_521_no_echo_server_alpha"
+    [display_name]="Ballerina prime server for 521 alpha"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_passthrough_prime.balx"
+    [bal_flags]="-e prime=521 --observe"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]=""
+    [skip]=false
+)
+declare -A test_scenario43=(
+    [name]="ballerina_prime_server_10007_no_echo_server_alpha"
+    [display_name]="Ballerina prime server for 10007 alpha"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_passthrough_prime.balx"
+    [bal_flags]="-e prime=10007 --observe"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]=""
+    [skip]=false
+)
+declare -A test_scenario44=(
+    [name]="ballerina_prime_server_100003_no_echo_server_alpha"
+    [display_name]="Ballerina prime server for 100003 alpha"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_passthrough_prime.balx"
+    [bal_flags]="-e prime=100003 --observe"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]=""
+    [skip]=false
+)
+declare -A test_scenario45=(
+    [name]="ballerina_prime_server_10000019_no_echo_server_alpha"
+    [display_name]="Ballerina prime server for 10000019 alpha"
+    [description]="An HTTPS Service, which checks prime and also echoes the request back"
+    [bal]="h1c_h1c_passthrough_prime.balx"
+    [bal_flags]="-e prime=10000019 --observe"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
+    [backend_flags]=""
+    [skip]=false
+)
 
 # declare -A test_scenario13=(
 #     [name]="passthrough_http_observe_tracing_noop"
