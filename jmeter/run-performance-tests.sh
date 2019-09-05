@@ -639,7 +639,19 @@ declare -A test_scenario46=(
     [jmx]="http-post-request.jmx"
     [protocol]="http"
     [use_backend]=true
-    [backend_flags]="--observe"
+    [skip]=false
+)
+declare -A test_scenario47=(
+    [name]="h1c_h1c_passthrough_default_alpha_t100_netty"
+    [display_name]="Passthrough HTTPS service (h1 -> h1) alpha netty"
+    [description]="An HTTPS Service, which forwards all requests to an HTTPS back-end service."
+    [bal]="h1c_h1c_passthrough_alpha.bal"
+    [bal_flags]="--observe"
+    [max_pool]="100"
+    [path]="/passthrough"
+    [jmx]="http-post-request.jmx"
+    [protocol]="http"
+    [use_backend]=true
     [skip]=false
 )
 

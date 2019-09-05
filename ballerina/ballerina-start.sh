@@ -25,22 +25,26 @@ heap_size="$default_heap_size"
 function usage() {
     echo ""
     echo "Usage: "
-    echo "$0 -p <ballerina_path> -b <ballerina_file> [-m <heap_size>] [-h] -- [ballerina_flags]"
+    echo "$0 -p <ballerina_path> -b <ballerina_file> -t <max_pool_size> [-m <heap_size>] [-h] -- [ballerina_flags]"
     echo ""
     echo "-p: The Ballerina program path."
     echo "-b: The Ballerina program."
+    echo "-t: Maximum pool size of thread executor."
     echo "-m: The heap memory size of Ballerina VM. Default: $default_heap_size."
     echo "-h: Display this help and exit."
     echo ""
 }
 
-while getopts "p:b:m:h" opts; do
+while getopts "p:b:t:m:h" opts; do
     case $opts in
     p)
         ballerina_path=${OPTARG}
         ;;
     b)
         ballerina_file=${OPTARG}
+        ;;
+    t)
+        max_pool_size=${OPTARG}
         ;;
     m)
         heap_size=${OPTARG}
@@ -104,6 +108,8 @@ export JAVA_OPTS="-XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xlogg
 JAVA_OPTS+=" -Xms${heap_size} -Xmx${heap_size}"
 JAVA_OPTS+=" -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath="${ballerina_path}/logs/heap-dump.hprof""
 
+export BALLERINA_MAX_POOL_SIZE="${max_pool_size}"
+
 ballerina_command="ballerina run ${bal_flags} ${ballerina_file}"
 echo "Starting Ballerina: $ballerina_command"
 cd $ballerina_path
@@ -121,3 +127,4 @@ done
 # Wait few more seconds to get logs
 sleep 5
 tail -10 ${ballerina_path}/logs/ballerina.log
+
