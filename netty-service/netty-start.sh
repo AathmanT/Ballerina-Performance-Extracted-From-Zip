@@ -20,7 +20,7 @@
 script_dir=$(dirname "$0")
 # Change directory to make sure logs directory is created inside $script_dir
 cd $script_dir
-service_name="ballerina"
+service_name=netty-http-echo-service
 default_heap_size="4g"
 heap_size="$default_heap_size"
 wait_listen=false
@@ -28,7 +28,7 @@ wait_listen=false
 function usage() {
     echo ""
     echo "Usage: "
-    echo "$0 [-m <heap_size>] [-p] [-w] [-h] -- [ballerina_echo_flags]"
+    echo "$0 [-m <heap_size>] [-w] [-h] -- [netty_service_flags]"
     echo ""
     echo "-m: The heap memory size of Netty Service. Default: $default_heap_size"
     echo "-w: Wait till the port starts to listen."
@@ -36,13 +36,10 @@ function usage() {
     echo ""
 }
 
-while getopts "m:p:wh" opts; do
+while getopts "m:wh" opts; do
     case $opts in
     m)
         heap_size=${OPTARG}
-        ;;
-    p)
-        ballerina_path=${OPTARG}
         ;;
     w)
         wait_listen=true
@@ -59,31 +56,17 @@ while getopts "m:p:wh" opts; do
 done
 shift "$((OPTIND - 1))"
 
-ballerina_echo_flags="$@"
+netty_service_flags="$@"
 
 if [[ -z $heap_size ]]; then
     echo "Please specify the heap size."
     exit 1
 fi
 
-#if pgrep -f "$service_name" >/dev/null; then
-#    echo "Shutting down Netty"
-#    pkill -f $service_name
-#fi
-
-if pgrep -f ballerina.*/bre >/dev/null; then
+if pgrep -f "$service_name" >/dev/null; then
     echo "Shutting down Netty"
-    pkill -f ballerina.*/bre
-    # Wait for few seconds
-    sleep 5
+    pkill -f $service_name
 fi
-
-# Check whether process exists
-if pgrep -f ballerina.*/bre >/dev/null; then
-    echo "Killing Netty process!!"
-    pkill -9 -f ballerina.*/bre
-fi
-
 
 gc_log_file=./logs/nettygc.log
 
@@ -95,21 +78,12 @@ fi
 mkdir -p logs
 
 echo "Starting Netty"
-#nohup java -Xms${heap_size} -Xmx${heap_size} -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:$gc_log_file \
-#    -jar $service_name-0.3.1-SNAPSHOT.jar $netty_service_flags >netty.out 2>&1 &
-
-export JAVA_OPTS="-XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:$gc_log_file"
-JAVA_OPTS+=" -Xms${heap_size} -Xmx${heap_size}"
-
-ballerina_command="ballerina run ${ballerina_echo_flags} ballerina-echo.bal"
-echo "Starting Ballerina: $ballerina_command"
-cd $ballerina_path
-nohup $ballerina_command &>netty.out 2>&1 &
-
+nohup java -Xms${heap_size} -Xmx${heap_size} -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:$gc_log_file \
+    -jar $service_name-0.3.1-SNAPSHOT.jar $netty_service_flags >netty.out 2>&1 &
 
 if [ "$wait_listen" = true ]; then
     # Find the port:
-    port=$(echo "$ballerina_echo_flags" | sed -nE "s/--port[[:blank:]]([[:digit:]]+)/\1/p")
+    port=$(echo "$netty_service_flags" | sed -nE "s/--port[[:blank:]]([[:digit:]]+)/\1/p")
     if [[ -z $port ]]; then
         # Default port
         port=8688
@@ -125,3 +99,4 @@ fi
 
 sleep 1
 tail -50 netty.out
+
