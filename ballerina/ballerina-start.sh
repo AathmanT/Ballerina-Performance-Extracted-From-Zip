@@ -104,10 +104,16 @@ export JAVA_OPTS="-XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xlogg
 JAVA_OPTS+=" -Xms${heap_size} -Xmx${heap_size}"
 JAVA_OPTS+=" -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath="${ballerina_path}/logs/heap-dump.hprof""
 
-ballerina_command="ballerina run ${bal_flags} ${ballerina_file}"
+#ballerina_command="ballerina run ${bal_flags} ${ballerina_file}"
+#echo "Starting Ballerina: $ballerina_command"
+#cd $ballerina_path
+#nohup $ballerina_command &>${ballerina_path}/logs/ballerina.log &
+
+ballerina_command="java -jar ${ballerina_file}"
 echo "Starting Ballerina: $ballerina_command"
 cd $ballerina_path
 nohup $ballerina_command &>${ballerina_path}/logs/ballerina.log &
+nohup jcmd $(pgrep -f h1c) JFR.start delay=20s duration=300s name=Test filename=recording.jfr settings=profile &
 
 # TODO Do a curl and check if service is started
 echo "Waiting to make sure that the server is ready to accept requests."
