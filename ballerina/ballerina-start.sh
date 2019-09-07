@@ -74,17 +74,17 @@ if [[ -z $heap_size ]]; then
     exit 1
 fi
 
-if pgrep -f ballerina.*/bre >/dev/null; then
+if pgrep -f h1c>/dev/null; then
     echo "Shutting down Ballerina"
-    pkill -f ballerina.*/bre
+    pkill -f h1c
     # Wait for few seconds
     sleep 5
 fi
 
 # Check whether process exists
-if pgrep -f ballerina.*/bre >/dev/null; then
+if pgrep -f h1c >/dev/null; then
     echo "Killing Ballerina process!!"
-    pkill -9 -f ballerina.*/bre
+    pkill -9 -f h1c
 fi
 
 if [ ! -d "${ballerina_path}/logs" ]; then
