@@ -652,7 +652,6 @@ declare -A test_scenario47=(
     [jmx]="http-post-request.jmx"
     [protocol]="http"
     [use_backend]=true
-    [backend_flags]="--observe"
     [skip]=false
 )
 
