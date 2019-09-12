@@ -113,7 +113,7 @@ ballerina_command="java -jar ${ballerina_file}"
 echo "Starting Ballerina: $ballerina_command"
 cd $ballerina_path
 nohup $ballerina_command &>${ballerina_path}/logs/ballerina.log &
-nohup jcmd $(pgrep -f h1c) JFR.start delay=20s duration=300s name=Test filename=recording.jfr settings=profile &
+#nohup jcmd $(pgrep -f h1c) JFR.start delay=20s duration=300s name=Test filename=recording.jfr settings=profile &
 
 # TODO Do a curl and check if service is started
 echo "Waiting to make sure that the server is ready to accept requests."
