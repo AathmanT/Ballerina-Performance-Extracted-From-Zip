@@ -74,17 +74,17 @@ if [[ -z $heap_size ]]; then
     exit 1
 fi
 
-if pgrep -f h1 >/dev/null; then
+if pgrep -f ballerina.*/bre >/dev/null; then
     echo "Shutting down Ballerina"
-    pkill -f h1
+    pkill -f ballerina.*/bre
     # Wait for few seconds
     sleep 5
 fi
 
 # Check whether process exists
-if pgrep -f h1 >/dev/null; then
+if pgrep -f ballerina.*/bre >/dev/null; then
     echo "Killing Ballerina process!!"
-    pkill -9 -f h1
+    pkill -9 -f ballerina.*/bre
 fi
 
 if [ ! -d "${ballerina_path}/logs" ]; then
@@ -103,13 +103,14 @@ echo "Enabling GC Logs"
 export JAVA_OPTS="-XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:${ballerina_path}/logs/gc.log"
 JAVA_OPTS+=" -Xms${heap_size} -Xmx${heap_size}"
 JAVA_OPTS+=" -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath="${ballerina_path}/logs/heap-dump.hprof""
+JAVA_OPTS+=" -XX:+UnlockDiagnosticVMOptions -XX:+DebugNonSafepoints -XX:+UnlockCommercialFeatures -XX:+FlightRecorder -XX:StartFlightRecording=delay=20s,duration=600s,name=Test,filename=recording100.jfr,settings=profile"
 
 #ballerina_command="ballerina run ${bal_flags} ${ballerina_file}"
 #echo "Starting Ballerina: $ballerina_command"
 #cd $ballerina_path
 #nohup $ballerina_command &>${ballerina_path}/logs/ballerina.log &
 
-ballerina_command="java -jar ${ballerina_file}"
+ballerina_command="ballerina run ${ballerina_file}"
 echo "Starting Ballerina: $ballerina_command"
 cd $ballerina_path
 nohup $ballerina_command &>${ballerina_path}/logs/ballerina.log &
