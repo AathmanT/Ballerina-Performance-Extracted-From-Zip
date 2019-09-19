@@ -103,7 +103,7 @@ echo "Enabling GC Logs"
 export JAVA_OPTS="-XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:${ballerina_path}/logs/gc.log"
 JAVA_OPTS+=" -Xms${heap_size} -Xmx${heap_size}"
 JAVA_OPTS+=" -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath="${ballerina_path}/logs/heap-dump.hprof""
-JAVA_OPTS+=" -XX:+UnlockDiagnosticVMOptions -XX:+DebugNonSafepoints -XX:+UnlockCommercialFeatures -XX:+FlightRecorder -XX:StartFlightRecording=delay=20s,duration=600s,name=Test,filename=recording100.jfr,settings=profile"
+#JAVA_OPTS+=" -XX:+UnlockDiagnosticVMOptions -XX:+DebugNonSafepoints -XX:+UnlockCommercialFeatures -XX:+FlightRecorder -XX:StartFlightRecording=delay=20s,duration=600s,name=Test,filename=recording100.jfr,settings=profile"
 
 #ballerina_command="ballerina run ${bal_flags} ${ballerina_file}"
 #echo "Starting Ballerina: $ballerina_command"

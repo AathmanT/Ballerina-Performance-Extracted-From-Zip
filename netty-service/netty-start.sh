@@ -78,8 +78,16 @@ fi
 mkdir -p logs
 
 echo "Starting Netty"
-nohup java -Xms${heap_size} -Xmx${heap_size} -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:$gc_log_file \
-    -jar $service_name-0.3.1-SNAPSHOT.jar $netty_service_flags >netty.out 2>&1 &
+#nohup java -Xms${heap_size} -Xmx${heap_size} -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:$gc_log_file \
+#    -jar $service_name-0.3.1-SNAPSHOT.jar $netty_service_flags >netty.out 2>&1 &
+
+
+ballerina_command="/home/wso2/Downloads/ballerina-0.990.2-SNAPSHOT/bin/ballerina run -e b7a.runtime.scheduler.corepoolsize=25 -e b7a.runtime.scheduler.maxpoolsize=200 -e b7a.runtime.scheduler.queuetype=default-linked -e b7a.runtime.scheduler.keepalivetime=10 --observe ballerina-echo.bal"
+#ballerina_command="ballerina run ${ballerina_file}"
+echo "Starting Ballerina: $ballerina_command"
+cd $ballerina_path
+nohup $ballerina_command &>netty.out 2>&1 &
+
 
 if [ "$wait_listen" = true ]; then
     # Find the port:
