@@ -17,6 +17,7 @@
 # Start Netty Service
 # ----------------------------------------------------------------------------
 
+ballerina_path="~/netty-service/"
 script_dir=$(dirname "$0")
 # Change directory to make sure logs directory is created inside $script_dir
 cd $script_dir
@@ -63,9 +64,22 @@ if [[ -z $heap_size ]]; then
     exit 1
 fi
 
-if pgrep -f "$service_name" >/dev/null; then
-    echo "Shutting down Netty"
-    pkill -f $service_name
+#if pgrep -f "$service_name" >/dev/null; then
+#    echo "Shutting down Netty"
+#    pkill -f $service_name
+#fi
+
+if pgrep -f ballerina.*/bre >/dev/null; then
+    echo "Shutting down Ballerina"
+    pkill -f ballerina.*/bre
+    # Wait for few seconds
+    sleep 5
+fi
+
+# Check whether process exists
+if pgrep -f ballerina.*/bre >/dev/null; then
+    echo "Killing Ballerina process!!"
+    pkill -9 -f ballerina.*/bre
 fi
 
 gc_log_file=./logs/nettygc.log
